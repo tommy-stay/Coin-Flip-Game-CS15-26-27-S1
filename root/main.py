@@ -1,23 +1,24 @@
 import random
 
-value = random.randint(1, 10)
+strikes = 0
 
-value = random.choice(["left", "right"])
-
-
-choices = ["left", "right"]
-value = random.choice(choices)
-
-guess = input("What is your guess?")
-
-guess = guess.lower()
-
-while value != guess:
-    guess = guess.lower()
-    if guess == "left":
-        print("Correct!")
+while strikes < 3:
+    coin = random.choice(["Heads", "Tails"])
 
 
-    if guess == "right":
-        print("Wrong!")
-        value = input("What is your guess?")
+    while True:
+        guess = input("Enter your guess (Heads or Tails): ")
+        if guess in ["Heads", "Tails"]:
+            break
+        print("Invalid input. Please enter 'Heads' or 'Tails'.")
+
+
+    if guess == coin:
+        strikes = 0
+        print(f"Correct! The coin landed on {coin}. Strikes: {strikes}/3")
+        print("Congratulations!🥳🥳🥳")
+    else:
+        strikes += 1
+        print(f"Incorrect! The coin landed on {coin}. Strikes: {strikes}/3")
+
+print("\nGame Over! You reached 3 strikes in a row.")
